@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIAKAD Politeknik Fiktif · Portal Akademik Terpadu (Praktikum M5 KSI)</title>
+    <!-- Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+        <div class="nav-brand">
+            <div class="logo-badge">🏛️</div>
+            <div>
+                <h1 class="brand-title">SIAKAD POLINELA FIKTIF</h1>
+                <span class="brand-subtitle">Praktikum M5: OWASP Top 10 Security Lab</span>
+            </div>
+        </div>
+
+        <div class="nav-actions">
+            <button id="btn-audit-modal" class="btn btn-warning-soft" title="Lihat Daftar Kerentanan yang Ditanam">
+                <span class="pulse-dot"></span>
+                🛡️ Audit Kerentanan (4 Celah)
+            </button>
+            <div id="user-chip" class="user-chip hidden">
+                <div class="user-avatar" id="nav-user-avatar">N</div>
+                <div class="user-info">
+                    <span class="user-name" id="nav-user-name">-</span>
+                    <span class="user-role-badge" id="nav-user-role">-</span>
+                </div>
+                <button id="btn-logout" class="btn-logout" title="Keluar">Keluar</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- 1. LOGIN SCREEN -->
+        <section id="view-login" class="view-section active">
+            <div class="login-wrapper">
+                <div class="login-card">
+                    <div class="login-header">
+                        <div class="login-icon">🔐</div>
+                        <h2>Masuk ke Portal Akademik</h2>
+                        <p>Silakan gunakan kredensial sintetis atau tombol login cepat demo di bawah.</p>
+                    </div>
+
+                    <!-- Vulnerability Note: SQL Injection Hint -->
+                    <div class="vuln-callout">
+                        <span class="vuln-tag">Celah #1: SQL Injection</span>
+                        <p>Form ini rentan terhadap bypass login. Coba masukkan: <code>admin' OR '1'='1 --</code> pada kolom Username.</p>
+                    </div>
+
+                    <form id="form-login" class="login-form">
+                        <div class="form-group">
+                            <label for="login-username">Username / NIM / NIP</label>
+                            <input type="text" id="login-username" placeholder="Contoh: nyken, pak_redo, admin" required autocomplete="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Kata Sandi</label>
+                            <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Masuk Portal</button>
+                    </form>
+
+                    <!-- Quick Demo Login Switcher -->
+                    <div class="quick-login">
+                        <p class="quick-login-title">Akses Cepat Pengujian (1-Klik):</p>
+                        <div class="quick-buttons">
+                            <button class="btn btn-demo" data-role="mahasiswa">
+                                🎓 Mahasiswa (Nyken - 24781020)
+                            </button>
+                            <button class="btn btn-demo" data-role="dosen">
+                                👨‍🏫 Dosen (M. Reza Redo Islami, M.T.I.)
+                            </button>
+                            <button class="btn btn-demo" data-role="admin">
+                                ⚙️ Administrator Kampus
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. MAHASISWA DASHBOARD -->
+        <section id="view-mahasiswa" class="view-section hidden">
+            <div class="dashboard-layout">
+                <!-- Sidebar Menu -->
+                <aside class="sidebar">
+                    <div class="sidebar-menu">
+                        <button class="menu-item active" data-target="mhs-tab-dashboard">📊 Ringkasan</button>
+                        <button class="menu-item" data-target="mhs-tab-nilai">📑 KHS & Nilai (Celah IDOR)</button>
+                        <button class="menu-item" data-target="mhs-tab-tugas">📤 Unggah Tugas (Celah File)</button>
+                        <button class="menu-item" data-target="mhs-tab-forum">💬 Forum Diskusi (Celah XSS)</button>
+                    </div>
+                </aside>
+
+                <!-- Mahasiswa Content Panels -->
+                <div class="content-panel">
+                    <!-- Tab 1: Ringkasan -->
+                    <div id="mhs-tab-dashboard" class="tab-content active">
+                        <div class="welcome-banner">
+                            <h2>Selamat Datang, <span class="highlight-name" id="mhs-name">Nyken Sekar Ayu</span>! 👋</h2>
+                            <p>Program Studi: D-III Manajemen Informatika | Semester: 5 | Tahun Akademik: 2026/2027</p>
+                        </div>
+
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <span class="stat-icon">🎓</span>
+                                <div class="stat-val">3.88</div>
+                                <div class="stat-lbl">Indeks Prestasi Kumulatif (IPK)</div>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-icon">📚</span>
+                                <div class="stat-val">22 SKS</div>
+                                <div class="stat-lbl">Beban SKS Semester 5</div>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-icon">📝</span>
+                                <div class="stat-val">2 Tugas</div>
+                                <div class="stat-lbl">Menunggu Pengumpulan</div>
+                            </div>
+                        </div>
+
+                        <div class="card mt-4">
+                            <h3>Pengumuman Akademik Terbaru</h3>
+                            <ul class="bullet-list">
+                                <li><strong>Praktikum Keamanan Sistem Informasi (M5):</strong> Pengumpulan laporan studi kasus OWASP Top 10 dibuka hingga batas waktu minggu ini.</li>
+                                <li><strong>Ujian Tengah Semester:</strong> Jadwal revisi dapat dilihat pada menu Kartu Rencana Studi.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Lihat Nilai (IDOR Vulnerability) -->
+                    <div id="mhs-tab-nilai" class="tab-content hidden">
+                        <div class="vuln-banner">
+                            <span class="vuln-badge">Celah #2: IDOR (Insecure Direct Object References)</span>
+                            <p>Sistem ini mengambil transkrip nilai berdasarkan ID mahasiswa tanpa validasi sesi kepemilikan. Anda dapat mengganti ID untuk melihat nilai mahasiswa lain!</p>
+                        </div>
+
+                        <div class="card">
+                            <div class="flex-between">
+                                <h3>Kartu Hasil Studi (KHS) Semester 5</h3>
+                                <div class="idor-control">
+                                    <label for="idor-mhs-select">Ganti ID Mahasiswa (Eksploit IDOR):</label>
+                                    <select id="idor-mhs-select" class="form-control-inline">
+                                        <option value="M001">ID: M001 · Nyken Sekar Ayu (Milik Anda)</option>
+                                        <option value="M002">ID: M002 · Budi Santoso (Mahasiswa Lain)</option>
+                                        <option value="M003">ID: M003 · Siti Rahmawati (Mahasiswa Lain)</option>
+                                        <option value="M004">ID: M004 · Ahmad Dahlan (Mahasiswa Lain)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive mt-3">
+                                <table class="custom-table" id="table-nilai">
+                                    <thead>
+                                        <tr>
+                                            <th>Kode MK</th>
+                                            <th>Mata Kuliah</th>
+                                            <th>SKS</th>
+                                            <th>Dosen Pengampu</th>
+                                            <th>Nilai Angka</th>
+                                            <th>Nilai Huruf</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbody-nilai">
+                                        <!-- Injected by JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: Unggah Tugas (Weak File Validation Vulnerability) -->
+                    <div id="mhs-tab-tugas" class="tab-content hidden">
+                        <div class="vuln-banner">
+                            <span class="vuln-badge">Celah #3: Validasi Berkas Lemah (Unrestricted File Upload)</span>
+                            <p>Form upload tugas di bawah tidak membatasi tipe ekstensi atau MIME type file. Berkas skrip berbahaya seperti <code>.php</code>, <code>.html</code>, <code>.exe</code>, atau <code>.js</code> dapat diunggah langsung ke server!</p>
+                        </div>
+
+                        <div class="card">
+                            <h3>Pengumpulan Tugas: Pertemuan 5 - Analisis OWASP</h3>
+                            <form id="form-upload-tugas" class="mt-3">
+                                <div class="form-group">
+                                    <label for="tugas-title">Judul Tugas / Catatan:</label>
+                                    <input type="text" id="tugas-title" placeholder="Contoh: Tugas Praktikum M5 - Nyken Sekar" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tugas-file">Pilih Berkas Tugas:</label>
+                                    <input type="file" id="tugas-file" required>
+                                    <small class="text-muted">Peringatan celah: Form ini menerima format apa pun tanpa validasi!</small>
+                                </div>
+                                <div class="button-row">
+                                    <button type="submit" class="btn btn-primary">Unggah Tugas Sekarang</button>
+                                    <button type="button" id="btn-demo-payload-file" class="btn btn-secondary">
+                                        🧪 Uji Upload Payload (.php / .html Web Shell)
+                                    </button>
+                                </div>
+                            </form>
+
+                            <div class="mt-4">
+                                <h4>Riwayat Unggahan Tugas Anda:</h4>
+                                <div id="mhs-tugas-list" class="file-cards-list mt-2">
+                                    <!-- Injected by JS -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 4: Forum Diskusi (Stored XSS Vulnerability) -->
+                    <div id="mhs-tab-forum" class="tab-content hidden">
+                        <div class="vuln-banner">
+                            <span class="vuln-badge">Celah #4: Stored XSS (Cross-Site Scripting)</span>
+                            <p>Pesan pada forum diskusi disimpan di database lokal dan ditampilkan menggunakan <code>innerHTML</code> tanpa sanitasi karakter <code>&lt; &gt; &quot;</code>. Tag JavaScript dapat dieksekusi oleh siapa pun yang membuka forum!</p>
+                        </div>
+
+                        <div class="card">
+                            <h3>Forum Diskusi Akademik Kelas MI-5A</h3>
+                            
+                            <!-- Post Message Form -->
+                            <form id="form-forum-post" class="mt-3">
+                                <div class="form-group">
+                                    <label for="forum-msg">Tulis Pesan / Pertanyaan:</label>
+                                    <textarea id="forum-msg" rows="3" placeholder="Tuliskan diskusi Anda di sini... (atau masukkan payload XSS untuk simulasi)" required></textarea>
+                                </div>
+                                <div class="button-row">
+                                    <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+                                    <button type="button" id="btn-demo-xss-img" class="btn btn-secondary">
+                                        ⚡ Uji Payload XSS Image (Popup Alert)
+                                    </button>
+                                    <button type="button" id="btn-demo-xss-cookie" class="btn btn-secondary">
+                                        ⚡ Uji Payload XSS Cookie / Session Theft
+                                    </button>
+                                    <button type="button" id="btn-clear-forum" class="btn btn-danger-soft">
+                                        Bersihkan Forum
+                                    </button>
+                                </div>
+                            </form>
+
+                            <div class="forum-feed mt-4" id="forum-feed">
+                                <!-- Messages injected by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. DOSEN DASHBOARD -->
+        <section id="view-dosen" class="view-section hidden">
+            <div class="dashboard-layout">
+                <aside class="sidebar">
+                    <div class="sidebar-menu">
+                        <button class="menu-item active" data-target="dosen-tab-input">📝 Penilaian Mahasiswa</button>
+                        <button class="menu-item" data-target="dosen-tab-tugas">📥 Review Tugas Masuk (Cek File)</button>
+                        <button class="menu-item" data-target="dosen-tab-forum">💬 Forum Diskusi</button>
+                    </div>
+                </aside>
+
+                <div class="content-panel">
+                    <!-- Tab 1: Input Nilai -->
+                    <div id="dosen-tab-input" class="tab-content active">
+                        <div class="welcome-banner">
+                            <h2>Panel Dosen Pengampu: <span class="highlight-name">M. Reza Redo Islami, S.Kom., M.T.I.</span></h2>
+                            <p>Mata Kuliah: PMI 1522 Keamanan Sistem Informasi · Kelas: D-III MI-5A</p>
+                        </div>
+
+                        <div class="card mt-3">
+                            <div class="flex-between">
+                                <h3>Kelola Nilai Mahasiswa</h3>
+                                <span class="badge badge-success">Mode Penilaian Aktif</span>
+                            </div>
+                            <div class="table-responsive mt-3">
+                                <table class="custom-table" id="table-dosen-nilai">
+                                    <thead>
+                                        <tr>
+                                            <th>NIM</th>
+                                            <th>Nama Mahasiswa</th>
+                                            <th>Tugas Praktikum</th>
+                                            <th>UTS</th>
+                                            <th>UAS</th>
+                                            <th>Nilai Akhir</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbody-dosen-nilai">
+                                        <!-- Injected by JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Review Berkas Tugas -->
+                    <div id="dosen-tab-tugas" class="tab-content hidden">
+                        <div class="card">
+                            <h3>Semua Pengumpulan Tugas Mahasiswa</h3>
+                            <p class="text-muted">Dosen dapat mengunduh dan memeriksa berkas yang diunggah oleh mahasiswa.</p>
+                            
+                            <div id="dosen-tugas-list" class="file-cards-list mt-3">
+                                <!-- Injected by JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: Forum Diskusi (Dosen View) -->
+                    <div id="dosen-tab-forum" class="tab-content hidden">
+                        <div class="card">
+                            <h3>Forum Diskusi Akademik (Tampilan Dosen)</h3>
+                            <p class="text-muted">Dosen dapat memantau diskusi dan menjawab pertanyaan mahasiswa.</p>
+                            <div class="forum-feed mt-3" id="dosen-forum-feed">
+                                <!-- Injected by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. ADMIN DASHBOARD -->
+        <section id="view-admin" class="view-section hidden">
+            <div class="dashboard-layout">
+                <aside class="sidebar">
+                    <div class="sidebar-menu">
+                        <button class="menu-item active" data-target="admin-tab-users">👥 Kelola Akun Pengguna</button>
+                        <button class="menu-item" data-target="admin-tab-security">🛡️ Audit Kerentanan Sistem</button>
+                    </div>
+                </aside>
+
+                <div class="content-panel">
+                    <!-- Tab 1: Kelola Akun -->
+                    <div id="admin-tab-users" class="tab-content active">
+                        <div class="welcome-banner">
+                            <h2>Panel Administrator: <span class="highlight-name">Super Admin KSI</span></h2>
+                            <p>Manajemen Hak Akses, Akun Sintetis Mahasiswa & Dosen</p>
+                        </div>
+
+                        <div class="card mt-3">
+                            <div class="flex-between">
+                                <h3>Daftar Seluruh Pengguna Sistem</h3>
+                                <button id="btn-tambah-user" class="btn btn-primary">+ Tambah Pengguna Baru</button>
+                            </div>
+                            <div class="table-responsive mt-3">
+                                <table class="custom-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Username</th>
+                                            <th>Nama Lengkap</th>
+                                            <th>Peran (Role)</th>
+                                            <th>NIM / NIP</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbody-admin-users">
+                                        <!-- Injected by JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Audit Kerentanan -->
+                    <div id="admin-tab-security" class="tab-content hidden">
+                        <div class="card">
+                            <h3>Laporan Audit Keamanan OWASP Top 10 (Sengaja Ditanam)</h3>
+                            <p>Halaman ini mendokumentasikan 4 jenis kerentanan yang sengaja diimplementasikan dalam portal ini untuk kebutuhan tugas praktikum M5.</p>
+                            
+                            <div class="vuln-matrix mt-3">
+                                <div class="vuln-item">
+                                    <h4>1. SQL Injection (Bypass Login)</h4>
+                                    <p><strong>Lokasi:</strong> Form Login Halaman Utama</p>
+                                    <p><strong>Mekanisme Celah:</strong> Query login menerima karakter kutip satu tanpa prepared statement.</p>
+                                    <code>Payload: admin' OR '1'='1 --</code>
+                                </div>
+                                <div class="vuln-item">
+                                    <h4>2. Stored Cross-Site Scripting (XSS)</h4>
+                                    <p><strong>Lokasi:</strong> Fitur Forum Diskusi Akademik</p>
+                                    <p><strong>Mekanisme Celah:</strong> Pesan disimpan di localStorage dan ditampilkan via <code>innerHTML</code> tanpa sanitasi.</p>
+                                    <code>Payload: &lt;img src=x onerror=alert('XSS Berhasil!')&gt;</code>
+                                </div>
+                                <div class="vuln-item">
+                                    <h4>3. IDOR / Kontrol Akses Lemah</h4>
+                                    <p><strong>Lokasi:</strong> Fitur Kartu Hasil Studi (KHS) Mahasiswa</p>
+                                    <p><strong>Mekanisme Celah:</strong> Nilai ditampilkan berdasarkan objek ID tanpa validasi hak kepemilikan sesi.</p>
+                                    <code>Eksploitasi: Ganti ID ke M002 / M003 untuk melihat nilai mahasiswa lain</code>
+                                </div>
+                                <div class="vuln-item">
+                                    <h4>4. Validasi Berkas Lemah (Unrestricted Upload)</h4>
+                                    <p><strong>Lokasi:</strong> Fitur Unggah Tugas Mahasiswa</p>
+                                    <p><strong>Mekanisme Celah:</strong> Menerima sembarang ekstensi berkas (.php, .exe, .sh) tanpa validasi MIME type.</p>
+                                    <code>Eksploitasi: Upload file webshell.php atau exploit.html</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Audit Kerentanan -->
+    <div id="modal-audit" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>🛡️ Panduan Audit Kerentanan (Untuk Penilai Dosen)</h3>
+                <button class="btn-close-modal" id="btn-close-audit">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Proyek portal kampus fiktif ini dibuat untuk memenuhi tugas <strong>M5 Keamanan Sistem Informasi</strong> dengan 4 kerentanan sengaja yang dapat langsung diuji:</p>
+                <div class="audit-list mt-3">
+                    <div class="audit-card">
+                        <strong>☑️ Stored XSS (Forum Diskusi)</strong>
+                        <p>Komentar forum disimpan dan dirender dengan <code>innerHTML</code> mentah.</p>
+                    </div>
+                    <div class="audit-card">
+                        <strong>☑️ Validasi Berkas Lemah (Upload Tugas)</strong>
+                        <p>Unggah berkas tanpa whitelist ekstensi, menerima <code>.php</code>, <code>.html</code>, dan skrip eksekutabel.</p>
+                    </div>
+                    <div class="audit-card">
+                        <strong>☑️ IDOR / Kontrol Akses Lemah (KHS Nilai)</strong>
+                        <p>Mengakses dan melihat transkrip nilai mahasiswa lain cukup dengan mengganti ID mahasiswa.</p>
+                    </div>
+                    <div class="audit-card">
+                        <strong>☑️ SQL Injection (Form Login)</strong>
+                        <p>Bypass autentikasi menggunakan payload <code>' OR '1'='1 --</code>.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="btn-modal-reset">Reset Data Demo</button>
+                <button class="btn btn-primary" id="btn-modal-close-ok">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit / Tambah User (Admin) -->
+    <div id="modal-user" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modal-user-title">Tambah Pengguna Baru</h3>
+                <button class="btn-close-modal" id="btn-close-user">&times;</button>
+            </div>
+            <form id="form-user-admin">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="user-input-username">Username:</label>
+                        <input type="text" id="user-input-username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-input-name">Nama Lengkap:</label>
+                        <input type="text" id="user-input-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-input-role">Peran (Role):</label>
+                        <select id="user-input-role" required>
+                            <option value="mahasiswa">Mahasiswa</option>
+                            <option value="dosen">Dosen</option>
+                            <option value="admin">Administrator</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-input-nomor">NIM / NIP:</label>
+                        <input type="text" id="user-input-nomor" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btn-cancel-user">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan Pengguna</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
