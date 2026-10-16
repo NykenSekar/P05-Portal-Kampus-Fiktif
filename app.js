@@ -20,25 +20,25 @@ const DEFAULT_USERS = [
 
 const DEFAULT_GRADES = {
     'M001': [
-        { kode: 'PMI 1522', mk: 'Keamanan Sistem Informasi', sks: 3, dosen: 'M. Reza Redo Islami, M.T.I.', angka: 95, huruf: 'A' },
+        { kode: 'PMI 1522', mk: 'Keamanan Sistem Informasi', sks: 3, dosen: 'M. Reza Redo Islami, S.Kom., M.T.I.', angka: 95, huruf: 'A' },
         { kode: 'PMI 1523', mk: 'Pemrograman Web Lanjut', sks: 3, dosen: 'Akhmad Jayadi, M.Cs.', angka: 92, huruf: 'A' },
         { kode: 'PMI 1524', mk: 'Manajemen Basis Data', sks: 3, dosen: 'Dr. Eng. Irwan, M.T.', angka: 88, huruf: 'A-' },
         { kode: 'PMI 1525', mk: 'Rekayasa Perangkat Lunak', sks: 3, dosen: 'Eka Lestari, M.Kom.', angka: 90, huruf: 'A' }
     ],
     'M002': [
-        { kode: 'PMI 1522', mk: 'Keamanan Sistem Informasi', sks: 3, dosen: 'M. Reza Redo Islami, M.T.I.', angka: 65, huruf: 'C' },
+        { kode: 'PMI 1522', mk: 'Keamanan Sistem Informasi', sks: 3, dosen: 'M. Reza Redo Islami, S.Kom., M.T.I.', angka: 65, huruf: 'C' },
         { kode: 'PMI 1523', mk: 'Pemrograman Web Lanjut', sks: 3, dosen: 'Akhmad Jayadi, M.Cs.', angka: 70, huruf: 'B-' },
         { kode: 'PMI 1524', mk: 'Manajemen Basis Data', sks: 3, dosen: 'Dr. Eng. Irwan, M.T.', angka: 58, huruf: 'D' },
         { kode: 'PMI 1525', mk: 'Rekayasa Perangkat Lunak', sks: 3, dosen: 'Eka Lestari, M.Kom.', angka: 62, huruf: 'C' }
     ],
     'M003': [
-        { kode: 'PMI 1522', mk: 'Keamanan Sistem Informasi', sks: 3, dosen: 'M. Reza Redo Islami, M.T.I.', angka: 85, huruf: 'A-' },
+        { kode: 'PMI 1522', mk: 'Keamanan Sistem Informasi', sks: 3, dosen: 'M. Reza Redo Islami, S.Kom., M.T.I.', angka: 85, huruf: 'A-' },
         { kode: 'PMI 1523', mk: 'Pemrograman Web Lanjut', sks: 3, dosen: 'Akhmad Jayadi, M.Cs.', angka: 87, huruf: 'A' },
         { kode: 'PMI 1524', mk: 'Manajemen Basis Data', sks: 3, dosen: 'Dr. Eng. Irwan, M.T.', angka: 82, huruf: 'B+' },
         { kode: 'PMI 1525', mk: 'Rekayasa Perangkat Lunak', sks: 3, dosen: 'Eka Lestari, M.Kom.', angka: 89, huruf: 'A' }
     ],
     'M004': [
-        { kode: 'PMI 1522', mk: 'Keamanan Sistem Informasi', sks: 3, dosen: 'M. Reza Redo Islami, M.T.I.', angka: 45, huruf: 'E' },
+        { kode: 'PMI 1522', mk: 'Keamanan Sistem Informasi', sks: 3, dosen: 'M. Reza Redo Islami, S.Kom., M.T.I.', angka: 45, huruf: 'E' },
         { kode: 'PMI 1523', mk: 'Pemrograman Web Lanjut', sks: 3, dosen: 'Akhmad Jayadi, M.Cs.', angka: 50, huruf: 'D' },
         { kode: 'PMI 1524', mk: 'Manajemen Basis Data', sks: 3, dosen: 'Dr. Eng. Irwan, M.T.', angka: 55, huruf: 'D+' },
         { kode: 'PMI 1525', mk: 'Rekayasa Perangkat Lunak', sks: 3, dosen: 'Eka Lestari, M.Kom.', angka: 60, huruf: 'C' }
@@ -48,7 +48,7 @@ const DEFAULT_GRADES = {
 const DEFAULT_POSTS = [
     {
         id: 1,
-        author: 'M. Reza Redo Islami, M.T.I.',
+        author: 'M. Reza Redo Islami, S.Kom., M.T.I.',
         role: 'dosen',
         time: 'Kemarin, 09:30',
         content: 'Pengumuman: Mahasiswa yang belum mengumpulkan tugas praktikum analisis celah OWASP Top 10 harap segera mengunggah sebelum batas waktu.'
